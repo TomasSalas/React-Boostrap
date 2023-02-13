@@ -1,17 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react"
+import { BrowserRouter , Routes , Route} from "react-router-dom"
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { createRoot } from "react-dom/client";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import App from "./App"
+import ViewEmployees from "./Views/Employees/ViewEmployees"
+import CreateEmployees from "./Views/Employees/CreateEmployees"
+import ViewTicket from "./Views/Ticket/ViewTicket"
+import CreateTicket from "./Views/Ticket/CreateTicket"
+import Index from "./Views/Index"
+
+const container = document.getElementById("root");
+const root = createRoot(container);
+
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <BrowserRouter>
+    <Routes>
+      <Route path='*' element={<Index />} />
+      <Route path="/index" element={<Index />} />
+      <Route path="/login" element={<App />} />
+      <Route path="/viewEmployees" element={<ViewEmployees />} />
+      <Route path="/createEmployees" element={<CreateEmployees />} />
+      <Route path="/viewTicket" element={<ViewTicket />} />
+      <Route path="/createTicket" element={<CreateTicket />} />
+    </Routes>
+  </BrowserRouter>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
