@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-const-assign */
 /* eslint-disable react-hooks/rules-of-hooks */
-import NavBar2 from '../../../Components/NavBar/index2.js'
+import NavBar from '../../../Components/NavBar/index.js'
 import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
@@ -82,7 +82,7 @@ function Home() {
 
   return (
     <div>
-      <NavBar2 />
+      <NavBar/>
       <Container>
       <h1 className="header">Visualizar empleados</h1>
       <Table striped bordered hover style={{ marginTop: 20 , textAlign:'center'}} responsive="md">

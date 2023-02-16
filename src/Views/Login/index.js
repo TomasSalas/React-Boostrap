@@ -10,7 +10,6 @@ import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import React, { useEffect } from 'react';
-import NavBar2 from '../../Components/NavBar/index2.js'
 
 function Login() {
   const navigate = useNavigate();

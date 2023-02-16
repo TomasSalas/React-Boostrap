@@ -4,7 +4,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-const-assign */
 /* eslint-disable react-hooks/rules-of-hooks */
-import NavBar2 from '../../../Components/NavBar/index2.js'
+
+import NavBar from '../../../Components/NavBar/index.js'
 import Container from 'react-bootstrap/Container';
 import { useForm } from "react-hook-form";
 import Form from 'react-bootstrap/Form';
@@ -101,7 +102,7 @@ function addTicket() {
   })
   return (
     <div>
-      <NavBar2 />
+      <NavBar />
       <Container>
       <h1 className="header">Crear tickets</h1>
         <Form style={{ marginTop: 20 }} onSubmit={handleSubmit(onSubmit)}>

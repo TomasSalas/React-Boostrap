@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import NavBar2 from '../../Components/NavBar/index2.js'
+import NavBar from '../../Components/NavBar/index.js'
 import Container from 'react-bootstrap/Container';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -23,7 +23,7 @@ function Index() {
 
   return (
     <div>
-      <NavBar2/>
+      <NavBar/>
       <Container>
         <h3> BIENVENIDO <span style={{color:"#545474"}}>{user.NOMBRES + ' ' + user.APELLIDOS }</span> </h3>
       </Container>
