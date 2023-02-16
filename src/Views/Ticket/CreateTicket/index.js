@@ -13,6 +13,7 @@ import Button from 'react-bootstrap/Button';
 import React, { useState, useEffect } from 'react';
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom';
+import jwt_decode from "jwt-decode";
 
 function addTicket() {
   const navigate =  useNavigate();
@@ -83,16 +84,21 @@ function addTicket() {
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("user")));
-
     const jwt = localStorage.getItem("jwt");
-    if (!jwt ) {
-      Swal.fire(
-        'Error',
-        'Inicio de sesión expirado',
-        'error'
-      ).then(() => {
-        return navigate('/login')
-      })
+    const decoded = jwt_decode(jwt);
+    const currentTime = Math.round(new Date().getTime()/1000) // tiempo actual en epoch 
+
+    if (jwt) {
+      if (currentTime > decoded.exp) {
+        Swal.fire(
+          'Error',
+          'Inicio de sesión expirado',
+          'error'
+        ).then(() => {
+          return navigate('/login')
+        })
+      }
+      
     }
   }, [])
 

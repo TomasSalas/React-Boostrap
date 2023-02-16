@@ -27,6 +27,7 @@ function Login() {
         }
       )
       let result = await response.json();
+      console.log(result);
       if (result.error === null) {
         Swal.fire(
           'Correcto',

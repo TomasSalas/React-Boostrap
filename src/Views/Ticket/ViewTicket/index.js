@@ -17,6 +17,7 @@ import { FcOk } from "react-icons/fc";
 import Modal from 'react-bootstrap/Modal';
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
+import jwt_decode from "jwt-decode";
 
 
 
@@ -104,14 +105,20 @@ function ViewTicket() {
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("user")));
     const jwt = localStorage.getItem("jwt");
-    if (!jwt ) {
-      Swal.fire(
-        'Error',
-        'Inicio de sesión expirado',
-        'error'
-      ).then(() => {
-        return navigate('/login')
-      })
+    const decoded = jwt_decode(jwt);
+    const currentTime = Math.round(new Date().getTime()/1000) // tiempo actual en epoch 
+
+    if (jwt) {
+      if (currentTime > decoded.exp) {
+        Swal.fire(
+          'Error',
+          'Inicio de sesión expirado',
+          'error'
+        ).then(() => {
+          return navigate('/login')
+        })
+      }
+      
     }
   },[])
   useEffect(() => {
@@ -146,7 +153,7 @@ function ViewTicket() {
                   <td> {items.DESCRIPCION} </td>
                   <td style={{color: "green"}}> {items.FECHA_INICIO} </td>
                   {
-                      items.FECHA_TERMINO < dateNew ? 
+                      items.FECHA_TERMINO <= dateNew ? 
                       <td style={{color: "red"}}> 
                         {
                           items.FECHA_TERMINO

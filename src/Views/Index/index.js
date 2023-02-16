@@ -3,6 +3,8 @@ import NavBar from '../../Components/NavBar/index.js'
 import Container from 'react-bootstrap/Container';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import jwt_decode from "jwt-decode";
+import Swal from 'sweetalert2'
 
 function Index() {
   
@@ -11,14 +13,22 @@ function Index() {
 
   useEffect(() =>{
     setUser(JSON.parse(localStorage.getItem("user")));
-
     const jwt = localStorage.getItem("jwt");
-    if (!jwt ) {
-      navigate('/login')
-      return;
+    const decoded = jwt_decode(jwt);
+    const currentTime = Math.round(new Date().getTime()/1000) // tiempo actual en epoch 
+
+    if (jwt) {
+      if (currentTime > decoded.exp) {
+        Swal.fire(
+          'Error',
+          'Inicio de sesión expirado',
+          'error'
+        ).then(() => {
+          return navigate('/login')
+        })
+      }
+      
     }
-
-
   },[])
 
   return (
