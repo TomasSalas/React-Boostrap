@@ -29,7 +29,6 @@ function ViewTicket() {
   const [estado, setEstado] = useState([])
   const [show, setShow] = useState(false);
   let date = new Date()
-  let fecha = "green"
   let day = `${(date.getDate())}`.padStart(2,'0');
   let month = `${(date.getMonth()+1)}`.padStart(2,'0');
   let year = date.getFullYear();
