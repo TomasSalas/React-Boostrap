@@ -50,7 +50,7 @@ function Home() {
     let data = {
       id: params
     }
-    let response = await fetch('http://127.0.0.1:1313/updateStateEmployees',
+    let response = await fetch('backticket-production.up.railway.app/updateStateEmployees',
       {
         method: 'POST',
         body: JSON.stringify(data),
@@ -85,7 +85,7 @@ function Home() {
   };
 
   const onSubmit = async (data) => {
-    let response = await fetch('http://127.0.0.1:1313/updateEmployees',
+    let response = await fetch('backticket-production.up.railway.app/updateEmployees',
       {
         method: 'POST',
         body: JSON.stringify(data),
@@ -109,7 +109,7 @@ function Home() {
 
   const selectEstado = async () => {
     try {
-      let response = await fetch('http://127.0.0.1:1313/getCargo',
+      let response = await fetch('backticket-production.up.railway.app/getCargo',
         {
           method: 'GET',
           headers: {

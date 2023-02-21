@@ -43,7 +43,7 @@ function ViewTicket() {
 
   const getTickets = async () => {
     try {
-      let response = await fetch('http://localhost:1313/viewTicket',
+      let response = await fetch('backticket-production.up.railway.app/viewTicket',
         {
           method: 'GET',
         }
@@ -62,7 +62,7 @@ function ViewTicket() {
 
   const selectEstado = async () => {
     try {
-      let response = await fetch('http://127.0.0.1:1313/getEstadoTicket',
+      let response = await fetch('backticket-production.up.railway.app/getEstadoTicket',
         {
           method: 'GET',
         }
@@ -81,7 +81,7 @@ function ViewTicket() {
   }
 
   const onSubmit = async (data) => {
-    let response = await fetch('http://127.0.0.1:1313/updateStateTicket',
+    let response = await fetch('backticket-production.up.railway.app/updateStateTicket',
       {
         method: 'POST',
         body: JSON.stringify(data),
