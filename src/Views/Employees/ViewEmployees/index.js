@@ -30,7 +30,7 @@ function Home() {
   let [employees, setEmployees] = useState([])
   const getEmployees = async () => {
     try {
-      let response = await fetch('http://127.0.0.1:1313/viewEmployees',
+      let response = await fetch('backticket-production.up.railway.app/viewEmployees',
         {
           method: 'GET',
           headers: {

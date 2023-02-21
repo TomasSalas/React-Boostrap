@@ -17,7 +17,7 @@ function Login() {
 
   const onSubmit = async (data) => {
     try {
-      let response = await fetch('backticket-production.up.railway.app/signin',
+      let response = await fetch('https://backticket-production.up.railway.app/signin',
         {
           method: 'POST',
           body: JSON.stringify(data),
@@ -27,7 +27,6 @@ function Login() {
         }
       )
       let result = await response.json();
-      console.log(result);
       if (result.error === null) {
         Swal.fire(
           'Correcto',
