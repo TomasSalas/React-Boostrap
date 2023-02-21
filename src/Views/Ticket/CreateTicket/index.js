@@ -21,7 +21,7 @@ function addTicket() {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
   const onSubmit = async (data) => {
-    let response = await fetch('backticket-production.up.railway.app/addTicket',
+    let response = await fetch('https://backticket-production.up.railway.app/addTicket',
       {
         method: 'POST',
         body: JSON.stringify(data),
@@ -46,7 +46,7 @@ function addTicket() {
 
   const selectEmployees = async () => {
     try {
-      let response = await fetch('backticket-production.up.railway.app/viewEmployeesCheck',
+      let response = await fetch('https://backticket-production.up.railway.app/viewEmployeesCheck',
         {
           method: 'GET',
           headers: {
@@ -65,7 +65,7 @@ function addTicket() {
 
   const selectEstado = async () => {
     try {
-      let response = await fetch('backticket-production.up.railway.app/getEstadoTicket',
+      let response = await fetch('https://backticket-production.up.railway.app/getEstadoTicket',
         {
           method: 'GET',
           headers: {

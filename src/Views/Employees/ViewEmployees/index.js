@@ -30,7 +30,7 @@ function Home() {
   let [employees, setEmployees] = useState([])
   const getEmployees = async () => {
     try {
-      let response = await fetch('backticket-production.up.railway.app/viewEmployees',
+      let response = await fetch('https://backticket-production.up.railway.app/viewEmployees',
         {
           method: 'GET',
           headers: {
@@ -39,6 +39,7 @@ function Home() {
         }
       )
       let result = await response.json();
+      console.log(result.Empleado)
       setEmployees(result.Empleado)
     }
     catch (err) {
@@ -50,7 +51,7 @@ function Home() {
     let data = {
       id: params
     }
-    let response = await fetch('backticket-production.up.railway.app/updateStateEmployees',
+    let response = await fetch('https://backticket-production.up.railway.app/updateStateEmployees',
       {
         method: 'POST',
         body: JSON.stringify(data),
@@ -85,7 +86,7 @@ function Home() {
   };
 
   const onSubmit = async (data) => {
-    let response = await fetch('backticket-production.up.railway.app/updateEmployees',
+    let response = await fetch('https://backticket-production.up.railway.app/updateEmployees',
       {
         method: 'POST',
         body: JSON.stringify(data),
@@ -109,7 +110,7 @@ function Home() {
 
   const selectEstado = async () => {
     try {
-      let response = await fetch('backticket-production.up.railway.app/getCargo',
+      let response = await fetch('https://backticket-production.up.railway.app/getCargo',
         {
           method: 'GET',
           headers: {
@@ -119,6 +120,7 @@ function Home() {
       )
       
       let result = await response.json();
+      console.log(result)
       setCargo(result.Cargo)
     }
     catch (err) {

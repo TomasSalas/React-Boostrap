@@ -22,7 +22,7 @@ function Link() {
   const [ user , setUser ] = useState([])
 
   const onSubmit = async (data) => {
-    let response = await fetch('backticket-production.up.railway.app/addEmployees',
+    let response = await fetch('https://backticket-production.up.railway.app/addEmployees',
       {
         method: 'POST',
         body: JSON.stringify(data),
@@ -50,7 +50,7 @@ function Link() {
   const [cargo , setCargo] = useState([])
   const selectCargo = async () => {
     try {
-      let response = await fetch('backticket-production.up.railway.app/getCargo',
+      let response = await fetch('https://backticket-production.up.railway.app/getCargo',
         {
           method: 'GET',
           headers: {
