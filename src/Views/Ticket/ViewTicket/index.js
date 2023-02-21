@@ -83,7 +83,6 @@ function ViewTicket() {
         }
       }
     )
-    console.log('response' , response)
     let result = await response.json();
     if (result) {
       Swal.fire(

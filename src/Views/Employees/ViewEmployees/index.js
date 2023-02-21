@@ -39,7 +39,6 @@ function Home() {
         }
       )
       let result = await response.json();
-      console.log(result.Empleado)
       setEmployees(result.Empleado)
     }
     catch (err) {
@@ -120,7 +119,6 @@ function Home() {
       )
       
       let result = await response.json();
-      console.log(result)
       setCargo(result.Cargo)
     }
     catch (err) {
