@@ -16,7 +16,7 @@ const root = createRoot(container);
 root.render(
   <BrowserRouter>
     <Routes>
-      <Route path='*' element={<Index />} />
+      <Route path='*' element={<App />} />
       <Route path="/index" element={<Index />} />
       <Route path="/login" element={<App />} />
       <Route path="/viewEmployees" element={<ViewEmployees />} />
