@@ -5,29 +5,34 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import jwt_decode from "jwt-decode";
 import Swal from 'sweetalert2'
+// import { redirect } from "react-router-dom";
 
 function Index() {
   
   const navigate =  useNavigate();
   const [ user , setUser ] = useState([])
+  let jwt = localStorage.getItem("jwt");
+
 
   useEffect(() =>{
-    setUser(JSON.parse(localStorage.getItem("user")));
-    const jwt = localStorage.getItem("jwt");
-    const decoded = jwt_decode(jwt);
-    const currentTime = Math.round(new Date().getTime()/1000) // tiempo actual en epoch 
-
-    if (jwt) {
+    if(jwt != null){
+      const decoded = jwt_decode(jwt);
+      setUser(JSON.parse(localStorage.getItem("user")));
+      const currentTime = Math.round(new Date().getTime()/1000) // tiempo actual en epoch 
+      
       if (currentTime > decoded.exp) {
         Swal.fire(
           'Error',
           'Inicio de sesión expirado',
           'error'
         ).then(() => {
+          localStorage.removeItem('jwt')
+          localStorage.removeItem('user')
           return navigate('/login')
         })
       }
-      
+    }else{
+      return navigate('/login')
     }
   },[])
 

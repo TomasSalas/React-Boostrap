@@ -34,6 +34,7 @@ function ViewTicket() {
   let year = date.getFullYear();
 
   let dateNew = (`${day}-${month}-${year}`)
+  let jwt = localStorage.getItem("jwt");
 
   const handleClose = () => setShow(false);
   const handleShow = async (event, params) => {
@@ -95,22 +96,24 @@ function ViewTicket() {
     setShow(false)
   }
   useEffect(() => {
-    setUser(JSON.parse(localStorage.getItem("user")));
-    const jwt = localStorage.getItem("jwt");
-    const decoded = jwt_decode(jwt);
-    const currentTime = Math.round(new Date().getTime() / 1000) // tiempo actual en epoch 
-
-    if (jwt) {
+    if(jwt != null){
+      const decoded = jwt_decode(jwt);
+      setUser(JSON.parse(localStorage.getItem("user")));
+      const currentTime = Math.round(new Date().getTime()/1000) // tiempo actual en epoch 
+      
       if (currentTime > decoded.exp) {
         Swal.fire(
           'Error',
           'Inicio de sesión expirado',
           'error'
         ).then(() => {
+          localStorage.removeItem('jwt')
+          localStorage.removeItem('user')
           return navigate('/login')
         })
       }
-
+    }else{
+      return navigate('/login')
     }
   }, [])
   useEffect(() => {

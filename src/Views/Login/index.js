@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-undef */
 /* eslint-disable no-template-curly-in-string */
 /* eslint-disable no-unused-vars */
@@ -14,6 +15,7 @@ import React, { useEffect } from 'react';
 function Login() {
   const navigate = useNavigate();
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const jwt = localStorage.getItem("jwt")
 
   const onSubmit = async (data) => {
     try {
@@ -54,11 +56,18 @@ function Login() {
       )
     }
   }
-  useEffect(() => {
-    localStorage.removeItem('jwt')
-    localStorage.removeItem('user')
 
-  }, [])
+  const verifyLogin = async () => {
+    
+    if(jwt){
+      return navigate('/index')
+    }else{
+      return navigate('/login')
+    }
+  }
+  useEffect(() => {
+    verifyLogin()
+  } , [])
   return (
     <div
       style={{

@@ -20,6 +20,7 @@ function Link() {
   const { register, handleSubmit, reset,  formState: { errors } } = useForm();
   const navigate =  useNavigate();
   const [ user , setUser ] = useState([])
+  let jwt = localStorage.getItem("jwt");
 
   const onSubmit = async (data) => {
     let response = await fetch('https://backticket-production.up.railway.app/addEmployees',
@@ -68,24 +69,27 @@ function Link() {
   }
 
   useEffect(() => {
-    setUser(JSON.parse(localStorage.getItem("user")));
-    const jwt = localStorage.getItem("jwt");
-    const decoded = jwt_decode(jwt);
-    const currentTime = Math.round(new Date().getTime()/1000) // tiempo actual en epoch 
-
-    if (jwt) {
+    if(jwt != null){
+      selectCargo()
+      const decoded = jwt_decode(jwt);
+      setUser(JSON.parse(localStorage.getItem("user")));
+      const currentTime = Math.round(new Date().getTime()/1000) // tiempo actual en epoch 
+      
       if (currentTime > decoded.exp) {
         Swal.fire(
           'Error',
           'Inicio de sesión expirado',
           'error'
         ).then(() => {
+          localStorage.removeItem('jwt')
+          localStorage.removeItem('user')
           return navigate('/login')
         })
       }
-      
+    }else{
+      return navigate('/login')
     }
-    selectCargo()
+    
   }, [])
   return (
     <div>
