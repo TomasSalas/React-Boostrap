@@ -223,7 +223,6 @@ function Home() {
                 placeholder="ID EMPLEADO"
                 {
                 ...register("idEmpleado")
-                
                 }
                 disabled
               />
