@@ -148,7 +148,7 @@ function ViewTicket() {
                     <td> {items.DESCRIPCION} </td>
                     <td style={{ color: "green" }}> {items.FECHA_INICIO} </td>
                     {
-                      items.FECHA_TERMINO <= dateNew ?
+                      items.FECHA_TERMINO <= date ?
                         <td style={{ color: "red" }}>
                           {
                             items.FECHA_TERMINO
